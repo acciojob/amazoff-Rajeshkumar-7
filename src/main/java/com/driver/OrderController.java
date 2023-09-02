@@ -45,45 +45,40 @@ public class OrderController {
     @GetMapping("/get-order-by-id/{orderId}")
     public ResponseEntity<Order> getOrderById(@PathVariable String orderId){
 
-        Order order= null;
+        Order order= orderService.getOrderById(orderId);;
         //order should be returned with an orderId.
-        order = orderService.getOrderById(orderId);
         return new ResponseEntity<>(order, HttpStatus.CREATED);
     }
 
     @GetMapping("/get-partner-by-id/{partnerId}")
     public ResponseEntity<DeliveryPartner> getPartnerById(@PathVariable String partnerId){
 
-        DeliveryPartner deliveryPartner = null;
+        DeliveryPartner deliveryPartner = orderService.getPartnerById(partnerId);
         //deliveryPartner should contain the value given by partnerId
-        deliveryPartner = orderService.getPartnerById(partnerId);
         return new ResponseEntity<>(deliveryPartner, HttpStatus.CREATED);
     }
 
     @GetMapping("/get-order-count-by-partner-id/{partnerId}")
     public ResponseEntity<Integer> getOrderCountByPartnerId(@PathVariable String partnerId){
 
-        Integer orderCount = 0;
+        Integer orderCount = orderService.getOrderCountByPartnerId(partnerId);
 
         //orderCount should denote the orders given by a partner-id
-        orderCount = orderService.getOrderCountByPartnerId(partnerId);
         return new ResponseEntity<>(orderCount, HttpStatus.CREATED);
     }
 
     @GetMapping("/get-orders-by-partner-id/{partnerId}")
     public ResponseEntity<List<String>> getOrdersByPartnerId(@PathVariable String partnerId){
-        List<String> orders = null;
+        List<String> orders = orderService.getOrdersByPartnerId(partnerId);
 
         //orders should contain a list of orders by PartnerId
-        orders = orderService.getOrdersByPartnerId(partnerId);
         return new ResponseEntity<>(orders, HttpStatus.CREATED);
     }
 
     @GetMapping("/get-all-orders")
     public ResponseEntity<List<String>> getAllOrders(){
-        List<String> orders = null;
+        List<String> orders = orderService.getAllOrders();
         //Get all orders
-        orders = orderService.getAllOrders();
         return new ResponseEntity<>(orders, HttpStatus.CREATED);
     }
 
