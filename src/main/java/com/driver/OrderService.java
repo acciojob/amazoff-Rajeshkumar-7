@@ -9,7 +9,6 @@ import java.util.List;
 @Service
 public class OrderService {
 
-
     OrderRepository orderRepository = new OrderRepository();
 
     public void addOrder(Order order) {
@@ -26,7 +25,8 @@ public class OrderService {
     }
 
     public Order getOrderById(String orderId) {
-        return orderRepository.getOrderById(orderId);
+        Order order = orderRepository.getOrderById(orderId);
+        return order;
     }
 
     public DeliveryPartner getPartnerById(String partnerId) {
