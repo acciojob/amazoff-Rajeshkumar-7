@@ -101,14 +101,15 @@ public class OrderRepository {
 
     public void deletePartnerById(String partnerId) {
 
-        partnersDB.remove(partnerId);
-
         List<String> orders = partnerOrdersDB.get(partnerId);
-        partnerOrdersDB.remove(partnerId);
-
         for(String orderId : orders){
             orderPartnerDB.remove(orderId);
         }
+
+        partnersDB.remove(partnerId);
+        partnerOrdersDB.remove(partnerId);
+
+
     }
 
     public void deleteOrderById(String orderId) {
